@@ -76,7 +76,10 @@ class TestNoteEditDelete(MyTestCase):
         self.assertEqual(before_count - 1, after_count)
 
     def test_creator_can_edit_note(self):
-        response = self.creator_client.post(self.url_edit_note_slug, data=self.post_data)
+        response = self.creator_client.post(
+            self.url_edit_note_slug,
+            data=self.post_data
+        )
         self.assertRedirects(response, self.url_success)
         self.note.refresh_from_db()
         self.assertEqual(self.note.title, self.NEW_NOTE_TITLE)
