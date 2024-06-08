@@ -8,10 +8,6 @@ User = get_user_model()
 
 class TestListPage(MyTestCase):
 
-    @classmethod
-    def setUpTestData(cls):
-        super().setUpTestData()
-
     def test_notes_list_for_creator(self):
         response = self.creator_client.get(self.url_list)
         self.assertIn('object_list', response.context)
@@ -36,10 +32,6 @@ class TestListPage(MyTestCase):
 
 
 class TestDetailPage(MyTestCase):
-
-    @classmethod
-    def setUpTestData(cls):
-        super().setUpTestData()
 
     def test_content_detail_page(self):
         response = self.creator_client.get(self.url_detail_note_slug)

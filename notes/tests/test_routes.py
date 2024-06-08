@@ -5,10 +5,6 @@ from notes.tests.utils import MyTestCase
 
 class TestRoutes(MyTestCase):
 
-    @classmethod
-    def setUpTestData(cls):
-        super().setUpTestData()
-
     def test_pages_availability_anonymous(self):
         url_names = (
             self.url_home,

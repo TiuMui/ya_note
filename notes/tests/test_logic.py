@@ -40,6 +40,7 @@ class TestNoteCreation(MyTestCase):
         self.assertEqual(note.title, self.OTHER_NOTE_TITLE)
         self.assertEqual(note.text, self.OTHER_NOTE_TEXT)
         self.assertEqual(note.slug, expected_slug)
+        self.assertEqual(note.author, self.creator)
 
     def test_cant_use_duble_slug(self):
         duble_slug = slugify(self.NOTE_TITLE)
@@ -99,7 +100,7 @@ class TestNoteEditDelete(MyTestCase):
             data=self.post_data
         )
         self.assertEqual(response.status_code, HTTPStatus.NOT_FOUND)
-        note = Note.objects.get()
+        note = Note.objects.get(id=self.note.id)
         self.assertEqual(note.title, self.NOTE_TITLE)
         self.assertEqual(note.text, self.NOTE_TEXT)
         self.assertEqual(note.author, self.creator)
